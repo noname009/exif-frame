@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html id="theme">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover" />
+
+  <meta name="title" content="EXIF Frame" />
+  <meta name="description" content="Turn your images into beautifully framed masterpieces!" />
+  <meta name="keywords" content="Photo, Image, Frame, Exif, Metadata" />
+  <meta property="og:title" content="Frame Your Photos with EXIF Magic!" />
+  <meta name="robots" content="index,nofollow" />
+
+  <meta property="og:url" content="https://exif-frame.yuru.cam" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="EXIF Frame" />
+  <meta property="og:description" content="Turn your images into beautifully framed masterpieces!" />
+  <meta property="og:image" content="https://exif-frame.yuru.cam/example.jpg" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="EXIF Frame" />
+  <meta name="twitter:description" content="Turn your images into beautifully framed masterpieces!" />
+  <meta name="twitter:image" content="https://exif-frame.yuru.cam/example.jpg" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Web fonts for theme selection. Loaded from Google Fonts so users don't
+       need them installed locally. Korean fonts get a full character subset. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&family=Nanum+Myeongjo:wght@400;700&family=Nanum+Gothic:wght@400;700&family=IBM+Plex+Sans+KR:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
+  />
+
+  <!--
+    Barlow font — performance tuned:
+    - display=swap so the UI is never blank waiting on the font
+    - Only the weights actually used (300/400/500/600/700) instead of
+      36 variants
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Noto+Serif+KR:wght@300;400;700&family=Nanum+Myeongjo:wght@400;700&family=Nanum+Gothic:wght@400;700&family=IBM+Plex+Sans+KR:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;700&display=swap"
+    rel="stylesheet" />
+
+  <title>EXIF Frame</title>
+
+  <!--
+    NOTE: Konsta UI manages its own root element sizing. Do not add
+    `html { height: 100% }` or similar to inline styles — it produces
+    a blank-screen layout collision.
+    Analytics & telemetry removed for self-hosted builds.
+  -->
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/index.tsx"></script>
+</body>
+
+</html>

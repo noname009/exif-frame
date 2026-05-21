@@ -1,0 +1,44 @@
+# EXIF Frame - docker-compose
+#
+# Usage (Synology DSM 7+ "Container Manager"):
+#   1. Upload this whole folder to a share, e.g. /volume1/docker/exif-frame
+#   2. Container Manager → Project → Create
+#        - Path: /volume1/docker/exif-frame
+#        - Source: docker-compose.yml (existing)
+#   3. Build & start. Visit http://<NAS-IP>:8787
+#
+# Usage (any Docker host):
+#   docker compose up -d --build
+#
+# Change the host port via the EXIF_FRAME_PORT environment variable
+# or by editing the "ports" line below.
+
+services:
+  exif-frame:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: exif-frame:1.0.8
+    container_name: exif-frame
+    restart: unless-stopped
+    labels:
+      - "org.opencontainers.image.title=EXIF Frame (NAS)"
+      - "org.opencontainers.image.version=1.0.8"
+      - "org.opencontainers.image.source=https://github.com/yurucam/exif-frame"
+      - "org.opencontainers.image.description=Self-hosted EXIF Frame with gallery and overlay themes"
+    ports:
+      # host:container — change the left side if 8787 is taken
+      - "${EXIF_FRAME_PORT:-8787}:80"
+    # No volumes, no env, no DB — this is a pure static SPA.
+    # All photo processing happens in the user's browser.
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "5m"
+        max-file: "3"

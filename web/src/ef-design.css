@@ -1,0 +1,163 @@
+/*
+ * Copyright (C) 2026 noname009 (https://github.com/noname009)
+ *
+ * This file is part of a modified fork of EXIF Frame
+ * (original: https://github.com/jeonghyeon-net/exif-frame).
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3 of the License.
+ *
+ * This program is distributed WITHOUT ANY WARRANTY; without even the
+ * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* ──────────────────────────────────────────────────────────────────
+ * EF (Exif Frame) Design System — Dark Minimal, Lightroom-inspired
+ *
+ * 모든 색·간격·반경·타이포가 토큰화. 컴포넌트는 토큰만 참조.
+ * 라이트 모드는 `:root.ef-light`에서 토큰 재정의.
+ * ────────────────────────────────────────────────────────────────── */
+
+:root {
+  /* Surface — 다크가 기본 (Lightroom 모바일 톤) */
+  --ef-bg:           #0a0a0a;   /* 앱 최외곽 (사진 뒤) */
+  --ef-bg-elevated:  #141414;   /* 패널 배경 */
+  --ef-bg-raised:    #1c1c1c;   /* 카드 / 버튼 비활성 */
+  --ef-bg-hover:     #242424;
+  --ef-bg-pressed:   #2c2c2c;
+
+  /* Borders */
+  --ef-border:       rgba(255,255,255,0.08);
+  --ef-border-strong:rgba(255,255,255,0.16);
+
+  /* Text */
+  --ef-text:         rgba(255,255,255,0.92);
+  --ef-text-dim:     rgba(255,255,255,0.58);
+  --ef-text-faint:   rgba(255,255,255,0.32);
+
+  /* Brand accent */
+  --ef-accent:       #4a90e2;
+  --ef-accent-hi:    #5fa0f0;
+  --ef-accent-dim:   rgba(74,144,226,0.18);
+
+  /* Semantic */
+  --ef-success:      #3ecf6f;
+  --ef-warn:         #e8a64a;
+  --ef-danger:       #e74c3c;
+
+  /* Spacing scale */
+  --ef-sp-1: 4px;
+  --ef-sp-2: 8px;
+  --ef-sp-3: 12px;
+  --ef-sp-4: 16px;
+  --ef-sp-5: 20px;
+  --ef-sp-6: 24px;
+  --ef-sp-8: 32px;
+  --ef-sp-10: 40px;
+  --ef-sp-12: 48px;
+
+  /* Radii */
+  --ef-r-sm: 6px;
+  --ef-r-md: 10px;
+  --ef-r-lg: 14px;
+  --ef-r-xl: 20px;
+  --ef-r-full: 9999px;
+
+  /* Shadows */
+  --ef-shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
+  --ef-shadow-md: 0 4px 12px rgba(0,0,0,0.4);
+  --ef-shadow-lg: 0 12px 32px rgba(0,0,0,0.5);
+
+  /* Type */
+  --ef-font:       'Barlow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ef-font-mono:  'SF Mono', 'Menlo', 'Consolas', monospace;
+
+  --ef-fs-xs:   11px;
+  --ef-fs-sm:   12px;
+  --ef-fs-base: 13px;
+  --ef-fs-md:   14px;
+  --ef-fs-lg:   16px;
+  --ef-fs-xl:   20px;
+  --ef-fs-2xl:  28px;
+
+  /* Layout */
+  --ef-tabbar-h: 56px;
+  --ef-bottom-sheet-handle-h: 14px;
+
+  /* Motion */
+  --ef-easing: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ef-dur-fast: 120ms;
+  --ef-dur-mid:  200ms;
+}
+
+/* Light mode overrides */
+:root.ef-light {
+  --ef-bg:           #f7f7f8;
+  --ef-bg-elevated:  #ffffff;
+  --ef-bg-raised:    #f0f0f2;
+  --ef-bg-hover:     #e8e8ec;
+  --ef-bg-pressed:   #dcdce2;
+  --ef-border:       rgba(0,0,0,0.08);
+  --ef-border-strong:rgba(0,0,0,0.16);
+  --ef-text:         rgba(0,0,0,0.92);
+  --ef-text-dim:     rgba(0,0,0,0.58);
+  --ef-text-faint:   rgba(0,0,0,0.32);
+}
+
+/* App-level reset & base */
+
+html, body, #root {
+  /* Mobile browsers shrink/expand viewport with URL bar.
+     Use dynamic viewport height so layout adapts. Fallbacks first. */
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--ef-bg);
+  color: var(--ef-text);
+  font-family: var(--ef-font);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Konsta App wrapper takes full height too */
+.k-ios, .k-md, body > div[class*="k-"] {
+  background: var(--ef-bg) !important;
+  color: var(--ef-text) !important;
+  height: 100vh;
+  height: 100dvh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+}
+
+/* iOS safe area helper */
+.ef-safe-bottom {
+  padding-bottom: calc(env(safe-area-inset-bottom, 0px));
+}
+.ef-safe-top {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+/* Custom scrollbar */
+.ef-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+.ef-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 3px;
+}
+.ef-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}

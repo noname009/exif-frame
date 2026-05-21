@@ -1,0 +1,56 @@
+EXIF Frame — noname009 fork
+===========================
+
+This software is a modified version of EXIF Frame:
+  https://github.com/jeonghyeon-net/exif-frame
+
+Original copyright:
+  Copyright (C) the upstream authors of EXIF Frame.
+
+Fork modifications copyright:
+  Copyright (C) noname009
+  https://github.com/noname009
+
+License:
+  This program is licensed under the GNU General Public License v3.0
+  (GPL-3.0), the same license as the upstream project. See the LICENSE
+  file in this directory for the full license text.
+
+Modification notice (GPL-3.0 §5(a)):
+  This is a modified version of the upstream EXIF Frame. The complete
+  modified source code is this repository; the differences against
+  upstream constitute the full record of changes.
+
+Source code:
+  https://github.com/noname009/exif-frame
+
+
+-----------------------------------------------------------
+Third-party font: Pretendard
+-----------------------------------------------------------
+
+This software bundles the Pretendard font file
+(web/public/fonts/pretendard.ttf), which is a separate work licensed
+under the SIL Open Font License Version 1.1.
+
+  Copyright (c) 2021, Kil Hyung-jin
+  (https://github.com/orioncactus/pretendard),
+  with Reserved Font Name Pretendard.
+
+The full SIL OFL 1.1 license text is included at:
+  web/public/fonts/PRETENDARD-LICENSE.txt
+
+The Pretendard font is NOT covered by GPL-3.0. It is included under its
+own license (SIL OFL 1.1), which permits bundling with software of any
+license.
+
+
+-----------------------------------------------------------
+Fonts referenced by name only
+-----------------------------------------------------------
+
+Some themes allow selecting fonts such as "Noto Serif KR",
+"Nanum Myeongjo", "Nanum Gothic", "IBM Plex Sans KR", "Noto Sans KR",
+"Georgia", etc. These font files are NOT bundled with this software.
+They are only referenced by family name; rendering relies on the fonts
+being available on the user's system or via the browser's fallback chain.

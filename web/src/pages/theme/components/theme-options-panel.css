@@ -1,0 +1,478 @@
+/*
+ * Copyright (C) 2026 noname009 (https://github.com/noname009)
+ *
+ * This file is part of a modified fork of EXIF Frame
+ * (original: https://github.com/jeonghyeon-net/exif-frame).
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3 of the License.
+ *
+ * This program is distributed WITHOUT ANY WARRANTY; without even the
+ * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* ────────────────────────────────────────────────────────
+ * Theme options panel — iOS Settings style
+ * 그룹 = 둥근 카드, 옵션 = 카드 안의 행. 행 간 얇은 구분선.
+ * ──────────────────────────────────────────────────────── */
+
+.ef-opt {
+  padding: 8px 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-width: 0;
+}
+
+.ef-opt__group-title {
+  margin: 6px 4px 6px;
+  font-size: var(--ef-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ef-text-dim);
+}
+
+.ef-opt__card {
+  background: var(--ef-bg-elevated);
+  border-radius: var(--ef-r-lg);
+  overflow: hidden;
+  /* faint border in light mode for definition */
+  border: 1px solid var(--ef-border);
+}
+
+/* ── Row ──────────────────────────────────────────────── */
+
+.ef-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  min-height: 48px;
+  border-bottom: 1px solid var(--ef-border);
+  background: transparent;
+  color: var(--ef-text);
+  text-align: left;
+  width: 100%;
+}
+
+.ef-row--last { border-bottom: 0; }
+
+.ef-row--clickable {
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  cursor: pointer;
+  font: inherit;
+  transition: background var(--ef-dur-fast);
+}
+.ef-row--clickable:hover { background: var(--ef-bg-hover); }
+.ef-row--clickable:active { background: var(--ef-bg-pressed); }
+
+.ef-row--stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.ef-row__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ef-row__label {
+  font-size: var(--ef-fs-md);
+  font-weight: 500;
+  color: var(--ef-text);
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.ef-row__value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 60%;
+  color: var(--ef-text-dim);
+  font-size: var(--ef-fs-md);
+}
+
+.ef-row__chevron {
+  flex-shrink: 0;
+  color: var(--ef-text-faint);
+}
+
+.ef-row__mono {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--ef-text);
+}
+
+.ef-row__text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  color: var(--ef-text);
+}
+
+.ef-row__placeholder {
+  font-style: italic;
+  color: var(--ef-text-faint);
+  font-weight: 400;
+}
+
+.ef-row__num {
+  font-size: var(--ef-fs-sm);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--ef-text-dim);
+}
+
+.ef-row__color-val {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.ef-row__swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--ef-border-strong);
+  flex-shrink: 0;
+}
+
+/* ── Multi-cell row (옵션을 한 행에 가로로 묶기) ─────── */
+
+.ef-row--multi {
+  padding: 0;
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+}
+
+.ef-subcell {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  transition: background var(--ef-dur-fast);
+}
+.ef-subcell:hover { background: var(--ef-bg-hover); }
+.ef-subcell:active { background: var(--ef-bg-pressed); }
+.ef-subcell + .ef-subcell {
+  border-left: 1px solid var(--ef-border);
+}
+
+.ef-subcell__label {
+  font-size: var(--ef-fs-xs);
+  font-weight: 600;
+  color: var(--ef-text-dim);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+.ef-subcell__value {
+  font-size: var(--ef-fs-md);
+  color: var(--ef-text);
+  min-width: 0;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+.ef-subcell__value .ef-row__text,
+.ef-subcell__value .ef-row__mono {
+  font-size: var(--ef-fs-md);
+}
+
+/* ── Inline widgets in rows ────────────────────────────── */
+
+.ef-toggle {
+  width: 42px;
+  height: 24px;
+  border-radius: var(--ef-r-full);
+  background: var(--ef-bg-raised);
+  border: 1px solid var(--ef-border);
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--ef-dur-fast);
+  flex-shrink: 0;
+}
+.ef-toggle--on { background: var(--ef-accent); border-color: var(--ef-accent); }
+.ef-toggle__thumb {
+  position: absolute; top: 2px; left: 2px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform var(--ef-dur-fast);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+.ef-toggle--on .ef-toggle__thumb { transform: translateX(18px); }
+
+.ef-row-range {
+  width: 100%;
+  min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: var(--ef-bg-raised);
+  border-radius: 2px;
+  outline: none;
+  margin: 0;
+}
+.ef-row-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px; height: 18px;
+  background: var(--ef-accent);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--ef-bg-elevated);
+}
+.ef-row-range::-moz-range-thumb {
+  width: 18px; height: 18px;
+  background: var(--ef-accent);
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid var(--ef-bg-elevated);
+}
+
+.ef-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.ef-chip {
+  padding: 5px 12px;
+  border-radius: var(--ef-r-full);
+  border: 1px solid var(--ef-border);
+  background: var(--ef-bg-raised);
+  font-size: var(--ef-fs-sm);
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--ef-text-dim);
+  transition: all var(--ef-dur-fast);
+}
+.ef-chip:hover { background: var(--ef-bg-hover); color: var(--ef-text); }
+.ef-chip--on {
+  background: var(--ef-accent);
+  border-color: var(--ef-accent);
+  color: #fff;
+}
+
+/* ────────────────────────────────────────────────────────
+ * Input sheet (iOS-style modal)
+ * ──────────────────────────────────────────────────────── */
+
+.ef-sheet-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: env(safe-area-inset-top, 24px) 16px 16px;
+  animation: ef-fade-in 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ef-sheet-card {
+  width: 100%;
+  max-width: 480px;
+  margin-top: 8vh;
+  background: var(--ef-bg-elevated);
+  border-radius: var(--ef-r-lg);
+  box-shadow: var(--ef-shadow-lg);
+  overflow: hidden;
+  animation: ef-sheet-pop 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+}
+
+@keyframes ef-sheet-pop {
+  from { transform: translateY(-20px) scale(0.96); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.ef-sheet-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--ef-border);
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.ef-sheet-card__title {
+  flex: 1;
+  text-align: center;
+  font-weight: 600;
+  font-size: var(--ef-fs-md);
+  color: var(--ef-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ef-sheet-card__btn {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: var(--ef-fs-md);
+  font-weight: 500;
+  padding: 4px 8px;
+  border-radius: var(--ef-r-sm);
+  color: var(--ef-text-dim);
+}
+.ef-sheet-card__btn--save { color: var(--ef-accent-hi); font-weight: 600; }
+.ef-sheet-card__btn:hover { background: var(--ef-bg-hover); }
+
+.ef-sheet-card__body {
+  padding: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ef-sheet-card__hint {
+  margin-top: 12px;
+  font-size: var(--ef-fs-sm);
+  color: var(--ef-text-dim);
+  line-height: 1.4;
+}
+
+.ef-sheet-card__footer {
+  padding: 8px 16px 12px;
+  border-top: 1px solid var(--ef-border);
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.ef-sheet-card__reset {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  font-size: var(--ef-fs-sm);
+  color: var(--ef-text-dim);
+  padding: 6px 12px;
+  border-radius: var(--ef-r-sm);
+}
+.ef-sheet-card__reset:hover { background: var(--ef-bg-hover); color: var(--ef-text); }
+
+.ef-sheet-card__input,
+.ef-sheet-card__textarea {
+  width: 100%;
+  border-radius: var(--ef-r-md);
+  border: 1px solid var(--ef-border-strong);
+  background: var(--ef-bg-raised);
+  color: var(--ef-text);
+  font-family: inherit;
+  font-size: var(--ef-fs-lg);
+  padding: 10px 12px;
+}
+.ef-sheet-card__input:focus,
+.ef-sheet-card__textarea:focus {
+  outline: none;
+  border-color: var(--ef-accent);
+}
+
+.ef-sheet-card__textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.4;
+}
+
+.ef-color-preview {
+  width: 100%;
+  height: 80px;
+  border-radius: var(--ef-r-md);
+  border: 1px solid var(--ef-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+.ef-color-preview__hex {
+  font-size: var(--ef-fs-lg);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #fff;
+  -webkit-text-stroke: 2px rgba(0,0,0,0.55);
+  paint-order: stroke fill;
+  user-select: none;
+}
+.ef-color-native {
+  width: 100%;
+  height: 44px;
+  border: 1px solid var(--ef-border-strong);
+  border-radius: var(--ef-r-md);
+  cursor: pointer;
+  background: var(--ef-bg-raised);
+}
+.ef-color-presets {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(36px, 1fr));
+  gap: 6px;
+}
+.ef-color-preset {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--ef-r-sm);
+  border: 1px solid var(--ef-border);
+  cursor: pointer;
+  transition: transform var(--ef-dur-fast);
+}
+.ef-color-preset:hover { transform: scale(1.08); }
+.ef-color-preset.is-active { border: 2px solid var(--ef-accent); transform: scale(1.08); }
+
+.ef-select-list {
+  display: flex;
+  flex-direction: column;
+}
+.ef-select-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--ef-border);
+  cursor: pointer;
+  font-size: var(--ef-fs-md);
+  color: var(--ef-text);
+  text-align: left;
+}
+.ef-select-list__item:last-child { border-bottom: 0; }
+.ef-select-list__item:hover { background: var(--ef-bg-hover); }
+.ef-select-list__item.is-active { color: var(--ef-accent-hi); font-weight: 600; }

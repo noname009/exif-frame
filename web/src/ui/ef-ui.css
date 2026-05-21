@@ -1,0 +1,300 @@
+/*
+ * Copyright (C) 2026 noname009 (https://github.com/noname009)
+ *
+ * This file is part of a modified fork of EXIF Frame
+ * (original: https://github.com/jeonghyeon-net/exif-frame).
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3 of the License.
+ *
+ * This program is distributed WITHOUT ANY WARRANTY; without even the
+ * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* ── Icon button ───────────────────────────────────────── */
+
+.ef-icon-btn {
+  border: 0;
+  background: transparent;
+  color: var(--ef-text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  border-radius: var(--ef-r-md);
+  transition: background var(--ef-dur-fast), color var(--ef-dur-fast);
+}
+
+.ef-icon-btn:disabled { opacity: 0.4; cursor: default; }
+
+.ef-icon-btn--sm { padding: 6px; }
+.ef-icon-btn--md { padding: 8px; }
+.ef-icon-btn--lg { padding: 10px; }
+
+.ef-icon-btn--ghost:hover:not(:disabled) {
+  background: var(--ef-bg-hover);
+}
+
+.ef-icon-btn--solid {
+  background: var(--ef-bg-raised);
+}
+.ef-icon-btn--solid:hover:not(:disabled) {
+  background: var(--ef-bg-hover);
+}
+
+.ef-icon-btn--accent {
+  background: var(--ef-accent);
+  color: #fff;
+}
+.ef-icon-btn--accent:hover:not(:disabled) {
+  background: var(--ef-accent-hi);
+}
+
+.ef-icon-btn__label {
+  font-size: var(--ef-fs-sm);
+  font-weight: 500;
+}
+
+/* ── Button ────────────────────────────────────────────── */
+
+.ef-btn {
+  border: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  border-radius: var(--ef-r-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background var(--ef-dur-fast), color var(--ef-dur-fast), transform var(--ef-dur-fast);
+  white-space: nowrap;
+}
+
+.ef-btn:active:not(:disabled) { transform: scale(0.97); }
+.ef-btn:disabled { opacity: 0.4; cursor: default; }
+
+.ef-btn--sm { padding: 6px 12px; font-size: var(--ef-fs-sm); }
+.ef-btn--md { padding: 9px 16px; font-size: var(--ef-fs-md); }
+.ef-btn--lg { padding: 12px 20px; font-size: var(--ef-fs-md); }
+
+.ef-btn--full { width: 100%; }
+
+.ef-btn--solid {
+  background: var(--ef-bg-raised);
+  color: var(--ef-text);
+}
+.ef-btn--solid:hover:not(:disabled) { background: var(--ef-bg-hover); }
+
+.ef-btn--accent {
+  background: var(--ef-accent);
+  color: #fff;
+}
+.ef-btn--accent:hover:not(:disabled) { background: var(--ef-accent-hi); }
+
+.ef-btn--ghost {
+  background: transparent;
+  color: var(--ef-text-dim);
+}
+.ef-btn--ghost:hover:not(:disabled) {
+  background: var(--ef-bg-hover);
+  color: var(--ef-text);
+}
+
+.ef-btn--danger {
+  background: transparent;
+  color: var(--ef-danger);
+}
+.ef-btn--danger:hover:not(:disabled) {
+  background: rgba(231, 76, 60, 0.12);
+}
+
+.ef-btn__icon { display: inline-flex; }
+
+/* ── Section title ─────────────────────────────────────── */
+
+.ef-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px 8px;
+  font-size: var(--ef-fs-xs);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ef-text-dim);
+}
+
+/* ── Bottom sheet ─────────────────────────────────────── */
+
+.ef-sheet__scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 90;
+  animation: ef-fade-in var(--ef-dur-mid) var(--ef-easing);
+}
+
+.ef-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: var(--ef-bg-elevated);
+  border-top-left-radius: var(--ef-r-xl);
+  border-top-right-radius: var(--ef-r-xl);
+  box-shadow: var(--ef-shadow-lg);
+  display: flex;
+  flex-direction: column;
+  animation: ef-slide-up var(--ef-dur-mid) var(--ef-easing);
+}
+
+@keyframes ef-fade-in {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes ef-slide-up {
+  from { transform: translateY(100%); }
+  to   { transform: translateY(0); }
+}
+
+.ef-sheet__handle-area {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  touch-action: none;
+  flex-shrink: 0;
+}
+.ef-sheet__handle-area:active { cursor: grabbing; }
+
+.ef-sheet__handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ef-border-strong);
+}
+
+.ef-sheet__title {
+  padding: 0 20px 8px;
+  font-size: var(--ef-fs-md);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.ef-sheet__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* ── Horizontal scroll row ─────────────────────────────── */
+
+.ef-scroll-row {
+  display: flex;
+  gap: 10px;
+  padding: 4px 16px 12px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  flex-shrink: 0;
+}
+
+.ef-scroll-row > * {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+}
+
+/* ── Toggle ────────────────────────────────────────────── */
+
+.ef-toggle {
+  width: 42px;
+  height: 24px;
+  border-radius: var(--ef-r-full);
+  background: var(--ef-bg-raised);
+  border: 1px solid var(--ef-border);
+  position: relative;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--ef-dur-fast);
+  flex-shrink: 0;
+}
+
+.ef-toggle--on {
+  background: var(--ef-accent);
+  border-color: var(--ef-accent);
+}
+
+.ef-toggle__thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  transition: transform var(--ef-dur-fast);
+}
+
+.ef-toggle--on .ef-toggle__thumb {
+  transform: translateX(18px);
+}
+
+/* ── Slider ─────────────────────────────────────────────── */
+
+.ef-slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.ef-slider__input {
+  flex: 1;
+  min-width: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ef-bg-raised);
+  outline: none;
+}
+
+.ef-slider__input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ef-accent);
+  border: 2px solid var(--ef-bg-elevated);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+  cursor: pointer;
+}
+
+.ef-slider__input::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--ef-accent);
+  border: 2px solid var(--ef-bg-elevated);
+  cursor: pointer;
+}
+
+.ef-slider__value {
+  min-width: 40px;
+  text-align: right;
+  font-size: var(--ef-fs-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--ef-text-dim);
+}

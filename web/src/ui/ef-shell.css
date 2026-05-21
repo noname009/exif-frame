@@ -1,0 +1,92 @@
+/*
+ * Copyright (C) 2026 noname009 (https://github.com/noname009)
+ *
+ * This file is part of a modified fork of EXIF Frame
+ * (original: https://github.com/jeonghyeon-net/exif-frame).
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, version 3 of the License.
+ *
+ * This program is distributed WITHOUT ANY WARRANTY; without even the
+ * implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ * See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/* ── Shell ─────────────────────────────────────────────── */
+
+.ef-shell {
+  /* viewport에 고정 — iOS Safari가 input focus 시 페이지를 강제로 위로
+     밀어 올려도 셸 자체는 흔들리지 않는다. 내부 콘텐츠만 스크롤됨. */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  /* Priority: JS-measured visualViewport height > dvh > vh */
+  height: 100vh;
+  height: 100dvh;
+  height: var(--ef-vh, 100dvh);
+  background: var(--ef-bg);
+}
+
+.ef-shell__content {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.ef-shell__content > * {
+  flex: 1;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* ── Tabbar ────────────────────────────────────────────── */
+
+.ef-tabbar {
+  display: flex;
+  background: var(--ef-bg-elevated);
+  border-top: 1px solid var(--ef-border);
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.ef-tab {
+  flex: 1;
+  background: transparent;
+  border: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 0 10px;
+  height: var(--ef-tabbar-h);
+  color: var(--ef-text-dim);
+  cursor: pointer;
+  transition: color var(--ef-dur-fast) var(--ef-easing);
+}
+
+.ef-tab--active { color: var(--ef-text); }
+
+.ef-tab__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+}
+
+.ef-tab__label {
+  font-size: var(--ef-fs-xs);
+  letter-spacing: 0.02em;
+}
+
+.ef-tab--active .ef-tab__label { color: var(--ef-accent-hi); }
